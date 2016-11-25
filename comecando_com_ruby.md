@@ -108,6 +108,23 @@ e = %[texto e com o \] dentro]
 m = %$texto e com o \$ dentro$
 ```
 
+### Symbols
+
+São parecidos com strings mas são objetos que são usados para representar algum nome ou chave e ao contrário de string um objeto symbol com o mesmo valor é o mesmo objeto em toda execução do programa, para se criar um symbol apenas coloque ':' antes do nome do symbol exemplo:
+
+```ruby
+#declarando symbols
+s = :symbol
+s2 = :"symbol com espaços"
+
+#Diferente das strings um symbol sempre é a representação de um mesmo objeto
+
+:symbol.object_id == :symbol.object_id #=> true
+"string".object_id == "string".object_id #=> false
+```
+
+Mais a frente veremos algumas utilizações com symbols.
+
 
 ### Arrays
 
@@ -181,4 +198,67 @@ array_sucesso.map{|e| e + 2} #=> [3, 4, 12, 22, 32]
 
 Alêm desses existem vários outros métodos disponiveis, recomendo a leitura da Classe [Array]  para se familiarizar com eles.
 
+### Hash
+
+Os hashes são coleções parecidas com arrays mas que possuem chaves como indice ao invés de apenas números. Os índices podem ser qualquer tipo de objeto. 
+
+```ruby
+#Pode ser criado por {}
+omelete = {
+    "ovos" => 2,
+    "queijo" => 1,
+    "tomate" =>
+    "cebola" => 0
+}
+#No caso de symbols como chave o uso do rocket operator('=>') é opcional 
+#É possível simplesmente colocar o ':' do outro lado:
+
+omelete = {
+    ovos: 2,
+    queijo: 1,
+    tomate: 1,
+    cebola: 0
+} 
+
+#Ainda é possível criar passando um array,nesse caso o primeiro valor será a chave, o segundo o valor, o terceiro a chave e assim por diante.
+omelete = Hash[:ovos, 2,:queijo, 1,:tomate,1,:cebola,0]
+
+#Ou ainda é possível adicionar um Hash vazio e adicionar cada dado
+omelete = Hash.new
+omelete[:ovos] = 2
+omelete[:queijo] = 1
+omelete[:tomate] = 1
+omelete[:cebola] = 0
+```
+No caso de criarmos um novo hash pelo metodo new também podemos passar um bloco de código que será executado toda vez que uma chave que ainda não existe no hash for chamada e recebe como parametro o proprio hash e a chave que não existe.
+No exemplo a seguir instanciamos um novo hash vazio em que caso seja chamado uma chave :cebola que ainda não existe ele retornará "sem cebola". 
+
+```ruby
+omelete_sem_cebola = Hash.new{|hash, key| "sem cebola" if key = :cebola}
+
+#Ou ainda podemos usar ele ainda para retornar um valor padrão
+ideias = Hash.new{|hash, key| "sem ideias sobre isso"}
+ideia["O que você acha de um omelete sem cebola?"] #=> "sem ideias sobre isso"
+```
+Ou podemos fazer algo operação e guardar o valor, no exemplo a seguir vamos fazer um hash que retorna o fatorial de cada número, ou seja cada chave irá possuir o seu fatorial como valor que será calculado na primeira ver que ele for chamado.
+
+```ruby
+fat = Hash.new do |hash,key|
+    if [0,1].include? key.to_i
+        hash[key] = 1
+    else
+        hash[key] = (1..key.to_i).reduce(:*)
+    end
+end
+
+fat[5] #=> 120
+fat[3] #=> 6
+```
+Perceba que o calculo só será feito da primeira vez, nas próximas o valor ja estará guardado no hash.
+
+
+
+Recomendo uma leitura da classe [Hash] para ver mais sobre as suas possibilidades.
+
 [Array]: http://docs.ruby-lang.org/en/2.0.0/Array.html
+[Hash]: https://ruby-doc.org/core-2.3.0/Hash.html
