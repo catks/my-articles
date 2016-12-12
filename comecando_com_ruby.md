@@ -260,5 +260,172 @@ Perceba que o calculo só será feito da primeira vez, nas próximas o valor ja 
 
 Recomendo uma leitura da classe [Hash] para ver mais sobre as suas possibilidades.
 
+## Estruturas de decisão 
+
+No exemplo anterior já usamos a estrutura de decisão mais comum com if e um else, vamos ver agora algumas outras possibilidades que o ruby permite.
+
+Alguns dos operadores lógicos:
+* **&&** -> Operador 'e'
+* **||** -> operador 'ou'
+* **!** -> negação
+
+### If
+
+Supondo que temos que validar que duas variáveis são iguais para executar uma ação especifica podemos construir o if da maneira clássica:
+
+```ruby
+omelete1 = ['queijo','ovos']
+omelete2 = ['queijo', 'ovos']
+
+if omelete1 == omelete2
+    puts "Justo"
+end
+```
+
+Porém em casos que executamos apenas uma ação apos o if podemos usar o if em apenas uma linha:
+
+```ruby
+omelete1 = ['queijo','ovos']
+omelete2 = ['queijo', 'ovos']
+
+puts "Justo" if omelete1 == omelete2
+```
+
+Caso queremos verificar que algo algo é diferente podemos usar o operador booleano "!=" ou negar toda a expressão lógica.
+
+```ruby
+omelete1 = ['queijo','ovos']
+omelete2 = ['queijo', 'ovos','cebola']
+
+#If normal
+if omelete1 == omelete2
+    puts "Justo"
+end
+#If em uma linha
+puts "O meu omelete é diferente" if omelete1 != omelete2
+puts "O meu omelete é diferente" if !(omelete1 == omelete2)
+```
+
+### Unless
+
+Porém em casos em que usamos uma negação no if podemos alternativamente usar o unless.
+
+```ruby
+omelete1 = ['queijo','ovos']
+omelete2 = ['queijo', 'ovos','cebola']
+
+puts "O meu omelete é diferente" unless omelete1 == omelete2
+```
+
+No entanto há situações em que o unless não é recomendado:
+
+* A estrutura de decisão possui um else
+* A estrutura de decisão possui combinações lógicas com **&&**, **||** ou **!**
+
+Em ambos os casos o unless não é indicado devido ao fato de poder deixar confuso o resultado da expressão lógica.
+
+### If com else
+
+Em caso de queremos validar as duas possibilidades em uma decisão podemos usar a estrutura clássica do if e else...
+```ruby
+if 1 == 1
+    puts "Ainda bem"
+else
+    puts "Deu ruim"
+end
+```
+...ou em uma linha:
+
+```ruby
+if 1 == 1 then puts "Ainda bem" else puts "Deu ruim" end
+if 1 == 1; puts "Ainda bem" else puts "Deu ruim" end
+```
+
+Perceba que ao escrever em uma linha a palavra reservada **'then'** ou o **';'** é obrigatório.
+
+### If com else if
+
+Caso queremos fazer uma segunda validação podemos utilizar o elsif
+
+```ruby
+pedido = ['omelete','biscoito','suco'].sample #Pega aleatoriamente um item do array
+if pedido == 'biscoito'
+    puts "Tá ai o biscoito"
+elsif pedido == 'suco'
+    puts "Tá aí o suco"
+else
+    puts "Não tem biscoito!!!!!!!!!!"
+end
+```
+
+##Atribuindo o resultado de uma operação lógica a uma variável
+Em todos os casos podemos pegar o resultado de um if e armazenalo em uma variável, o resultado sempre será a ultima linha do bloco em que a operação lógica for verdadeira.
+```ruby
+def tem_biscoito?
+    [true,false].sample
+end
+
+resposta = if tem_biscoito?
+        "Tá ai o biscoito" #Retorna isso se a operação lógica for verdadeira
+    else
+        "Não tem biscoito!!!!!!!!!!" #Retorna isso se a operação lógica for falsa
+    end
+    
+puts resposta #=> "Tá ai o biscoito" ou "Não tem biscoito!!!!!!!!!!"
+```
+
+
+### Case
+
+É possível aninhar quantos elsif for necessários para validar todas as opções possíveis mas nesses casos é recomendado usar o case:
+
+```ruby
+pedido = ['omelete','biscoito','suco',"cebola"].sample #Pega aleatoriamente um item do array
+
+case pedido
+when 'omelete'
+    puts "Pegando o Omelete"
+when 'biscoito'
+    puts "Pegando o Biscoito"
+when 'suco'
+    puts "Pegando o suco de uva"
+else 
+    puts "Não temos isso"
+end
+```
+ Assim como o if também podemos armazenar o resultado do case:
+ 
+ ```ruby
+pedido = ['omelete','biscoito','suco',"cebola"].sample #Pega aleatoriamente um item do array
+
+resposta = case pedido
+when 'omelete'
+    "Pegando o Omelete"
+when 'biscoito'
+    "Pegando o Biscoito"
+when 'suco'
+    "Pegando o suco de uva"
+else 
+    "Não temos isso"
+end
+
+puts resposta
+```
+
+Alternativamente também podemos usar o then:
+
+ ```ruby
+pedido = ['omelete','biscoito','suco',"cebola"].sample #Pega aleatoriamente um item do array
+
+resposta = case pedido
+when 'omelete' then "Pegando o Omelete"
+when 'biscoito' then "Pegando o Biscoito"
+when 'suco' then "Pegando o suco de uva"
+else "Não temos isso"
+end
+
+puts resposta
+```
+
 [Array]: http://docs.ruby-lang.org/en/2.0.0/Array.html
 [Hash]: https://ruby-doc.org/core-2.3.0/Hash.html
