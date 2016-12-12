@@ -207,7 +207,7 @@ Os hashes são coleções parecidas com arrays, mas que possuem chaves como índ
 omelete = {
     "ovos" => 2,
     "queijo" => 1,
-    "tomate" => 1 (na sequência você atribuiu o valor 1 nos exemplos, não sei se deixou em branco propositalmente)
+    "tomate" => 1
     "cebola" => 0
 }
 #No caso de symbols como chave o uso do rocket operator('=>') é opcional 
