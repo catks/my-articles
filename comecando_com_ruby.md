@@ -495,11 +495,10 @@ end
 Mesmo em casos que não desejamos percorrer um array e sim executar uma mesma ação durante várias temos várias alternativas ao for.
 
  ```ruby
-10.times{ puts "Me"}
+10.times{ puts "Hello"}
 
-opcoes.each do |opcao|
-    puts opcao
-end
+#caso precise do índice
+(1..10).each_with_index {|num,i| puts "O índice de #{num} é #{i}"}
 ```
 
 [Array]: http://docs.ruby-lang.org/en/2.0.0/Array.html
