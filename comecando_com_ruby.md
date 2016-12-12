@@ -37,7 +37,7 @@ num = 123
 puts "Isso concatena com um número " + num.to_s
 ```
 
-Falando dos tipos de variáveis em relação ao escopo, podemos ter variáveis globais, locais, de instância e de classes e alêm das variáveis também temos as constantes.
+Falando dos tipos de variáveis em relação ao escopo, podemos ter variáveis globais, locais, de instância e de classes e além das variáveis também temos as constantes.
 
 ```ruby
 $v = "Variáveis globais começam com $"
@@ -75,13 +75,13 @@ Sendo objetos os tipos em ruby também possuem métodos e atributos, no exemplo 
 
 #### Strings
 
-Nos exemplos anteriores você já foi mostrado alguns exemplos com strings, em um exemplo vimos como podemos fazer a concatenação em ruby, aliás, aquele nem é o melhor jeito para juntar strings com variaveis em ruby, o ruby possui suporte a interpolação de strings, isso quer dizer que poderiamos escrever:
+Nos exemplos anteriores já foi mostrado a você alguns exemplos com strings, em um exemplo vimos como podemos fazer a concatenação em ruby, aliás, aquele nem é o melhor jeito para juntar strings com variaveis em ruby, o ruby possui suporte a interpolação de strings, isso quer dizer que poderiamos escrever:
 ```ruby
 num = 123
 puts "Isso concatena com um número #{num}"  
 ```
 
-O codigo acima irá validar o que está dentro de #{} e retornar para a string,alêm de variáveis também é possível colocar dentro dele funções que retornem valores.
+O codigo acima irá validar o que está dentro de #{} e retornar para a string, além de variáveis também é possível colocar dentro dele funções que retornem valores.
 
 Strings podem ser declaradas de várias maneiras:
 ```ruby
@@ -100,7 +100,7 @@ e = %[texto]
 m = %$texto$
 ```
 
-Note que assim que voçê escolhe um delimitador se for necessário representá-lo dentro da string ele deverá ser escapado:
+Note que assim que você escolhe um delimitador se for necessário representá-lo dentro da string ele deverá ser escapado:
 
 ```ruby
 s = %{texto e com o \} dentro}
@@ -110,7 +110,7 @@ m = %$texto e com o \$ dentro$
 
 ### Symbols
 
-São parecidos com strings mas são objetos que são usados para representar algum nome ou chave e ao contrário de string um objeto symbol com o mesmo valor é o mesmo objeto em toda execução do programa, para se criar um symbol apenas coloque ':' antes do nome do symbol exemplo:
+São parecidos com strings, mas são objetos que são usados para representar algum nome ou chave e ao contrário de string um objeto symbol com o mesmo valor é o mesmo objeto em toda execução do programa, para se criar um symbol apenas coloque ':' antes do nome do symbol, exemplo:
 
 ```ruby
 #declarando symbols
@@ -128,7 +128,7 @@ Mais a frente veremos algumas utilizações com symbols.
 
 ### Arrays
 
-Os arrays em ruby são coleções que suportam qualquer tipo de objeto dentro deles, é possível ter em um mesmo array uma String, um Fixnum,valores booleanos, outros arrays, enfim qualquer outro objeto.
+Os arrays em ruby são coleções que suportam qualquer tipo de objeto dentro deles, é possível ter em um mesmo array uma String, um Fixnum, valores booleanos, outros arrays, enfim qualquer outro objeto.
 
 ```ruby
 array_legal = [0,"texto",[0,1],true]
@@ -196,18 +196,18 @@ array_sucesso.reject{|e| e.even?} #=> [1]
 array_sucesso.map{|e| e + 2} #=> [3, 4, 12, 22, 32]
 ```
 
-Alêm desses existem vários outros métodos disponiveis, recomendo a leitura da Classe [Array]  para se familiarizar com eles.
+Além desses existem vários outros métodos disponiveis, recomendo a leitura da Classe [Array]  para se familiarizar com eles.
 
 ### Hash
 
-Os hashes são coleções parecidas com arrays mas que possuem chaves como indice ao invés de apenas números. Os índices podem ser qualquer tipo de objeto. 
+Os hashes são coleções parecidas com arrays, mas que possuem chaves como índice ao invés de apenas números. Os índices podem ser qualquer tipo de objeto. 
 
 ```ruby
 #Pode ser criado por {}
 omelete = {
     "ovos" => 2,
     "queijo" => 1,
-    "tomate" =>
+    "tomate" => 1
     "cebola" => 0
 }
 #No caso de symbols como chave o uso do rocket operator('=>') é opcional 
@@ -238,9 +238,9 @@ omelete_sem_cebola = Hash.new{|hash, key| "sem cebola" if key = :cebola}
 
 #Ou ainda podemos usar ele ainda para retornar um valor padrão
 ideias = Hash.new{|hash, key| "sem ideias sobre isso"}
-ideia["O que você acha de um omelete sem cebola?"] #=> "sem ideias sobre isso"
+ideias["O que você acha de um omelete sem cebola?"] #=> "sem ideias sobre isso"
 ```
-Ou podemos fazer algo operação e guardar o valor, no exemplo a seguir vamos fazer um hash que retorna o fatorial de cada número, ou seja cada chave irá possuir o seu fatorial como valor que será calculado na primeira ver que ele for chamado.
+Ou podemos fazer alguma operação e guardar o valor, no exemplo a seguir vamos fazer um hash que retorna o fatorial de cada número, ou seja, cada chave irá possuir o seu fatorial como valor que será calculado na primeira vez que ele for chamado.
 
 ```ruby
 fat = Hash.new do |hash,key|
