@@ -427,5 +427,80 @@ end
 puts resposta
 ```
 
+### Estruturas de repetição
+
+O ruby suporta todas as estruturas de repetição comuns em outras linguagens.
+
+ ```ruby
+# While
+cont = 0
+while (cont <= 10) do 
+    puts cont
+    cont += 1
+end
+
+# Do While
+cont = 0
+begin 
+  puts cont
+  cont+=1
+end while (cont <= 10)
+
+# Until
+count = 0
+until (count >= 10) do 
+    puts count
+    count += 1
+end
+
+# Do Until
+count = 0
+begin 
+  puts count
+  count+=1
+end until (count >= 10)
+
+#For Loop
+for i in 0..10
+    puts i
+end
+```
+
+Poderiamos assim percorrer um array da mesma maneira que fazemos em outras linguagens:
+
+ ```ruby
+opcoes = ['omelete','biscoito','suco',"cebola"]
+
+#Por indice
+for i in (0..opcoes.size-1)
+    puts opcoes[i]
+end
+
+#Por item (Estilo o for each presente em algumas linguagens)
+for opcao in opcoes
+    puts opcao
+end
+```
+
+Apesar de ser possível a pratica acima nao é maneira mais idiomática no ruby de resolver esse problema, para esse caso temos o método each:
+
+ ```ruby
+opcoes = ['omelete','biscoito','suco',"cebola"]
+
+opcoes.each do |opcao|
+    puts opcao
+end
+```
+
+Mesmo em casos que não desejamos percorrer um array e sim executar uma mesma ação durante várias temos várias alternativas ao for.
+
+ ```ruby
+10.times{ puts "Me"}
+
+opcoes.each do |opcao|
+    puts opcao
+end
+```
+
 [Array]: http://docs.ruby-lang.org/en/2.0.0/Array.html
 [Hash]: https://ruby-doc.org/core-2.3.0/Hash.html
